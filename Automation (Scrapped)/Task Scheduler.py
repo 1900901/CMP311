@@ -9,25 +9,25 @@ task_def = scheduler.NewTask(0)
 #Create sub folders, or assign values if they already exist
 try:
 	SecurityFolder = (scheduler.GetFolder('\\Security'))
-	
+
 	try:
 		ScansFolder = scheduler.GetFolder('\\Security\\Network Scans')
 	except:
 		ScansFolder = SecurityFolder.CreateFolder("Network Scans")
-	
+
 	try:
 		AlertFolder = scheduler.GetFolder('\\Security\\Alerts')
 	except:
 		AlertFolder = SecurityFolder.CreateFolder("Alerts")
-		
+
 except:
 	SecurityFolder = root_folder.CreateFolder("Security")
-	
+
 	try:
 		ScansFolder = scheduler.GetFolder('\\Security\\Network Scans')
 	except:
 		ScansFolder = SecurityFolder.CreateFolder("Network Scans")
-	
+
 	try:
 		AlertFolder = scheduler.GetFolder('\\Security\\Alerts')
 	except:
@@ -37,7 +37,7 @@ except:
 start_time = datetime.datetime.now() + datetime.timedelta(minutes=5) 	# How often to run tasks
 TASK_TRIGGER_TIME = 1 													# How many times to run the task
 trigger = task_def.Triggers.Create(TASK_TRIGGER_TIME)					# Creates the Trigger object with the given conditions
-trigger.StartBoundary = start_time.isoformat()							# 
+trigger.StartBoundary = start_time.isoformat()							# Tells the program when to first trigger
 
 # Create action
 TASK_ACTION_EXEC = 0
